@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
   return (
     <footer>
       <div>
-        <Image src={logo} alt="logo" />
+        <Image src={logo} alt="logo" width={88} height={46} />
       </div>
       <div></div>
       <div></div>

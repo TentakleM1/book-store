@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import Providers from "./StoreProvider";
+import { Poppins } from "next/font/google";
+import Providers from "./storeProvider";
+import { Wrapper } from "../components/wrapper/wrapper";
+import "./global.scss";
+import "./variables.scss";
+
+const poppins = Poppins({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Books Store",
@@ -13,9 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
+    <html lang="ru" className={poppins.className}>
       <body>
-        <Providers>{children}</Providers>
+        <Wrapper>
+          <Providers>{children}</Providers>
+        </Wrapper>
       </body>
     </html>
   );
