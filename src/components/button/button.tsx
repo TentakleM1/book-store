@@ -1,5 +1,6 @@
 import React from "react";
-import style from "./button-style.module.scss";
+import style from './button-style.module.scss'
+
 interface IButtonProps {
   title: string;
 }
