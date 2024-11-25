@@ -1,0 +1,10 @@
+@import '../../app/variables.module.scss';
+
+.banner {
+    background-color: $light-color;
+    border-radius: $radius;
+
+    .banner__assasin__picture {
+        opacity: .2;
+    }
+}

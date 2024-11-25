@@ -1,0 +1,5 @@
+@import './mixin.module.scss';
+
+.wrapper {
+    @include center;
+}

@@ -1,12 +1,11 @@
+import { AuthService } from "@/shared/service/authService/authService";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface IUser {
   id?: number;
-  firstName?: string;
-  lastName?: string;
+  fullName?: string;
   email: string;
   password: string;
-  birthDate: string;
 }
 
 export interface IData {
@@ -22,60 +21,52 @@ interface IInitialStateUsers {
 }
 
 const initialStateUsers: IInitialStateUsers = {
-  user: {
-    id: 1,
-  firstName: 'dsd',
-  lastName: '',
-  email: '',
-  password: '',
-  birthDate: ''
-  },
+  user: undefined,
   loading: false,
 };
 
-export const signUp = createAsyncThunk("auth/signUp", async () => {
-  return {
-    id: 3,
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    birthDate: ''
-  };
+export const signUp = createAsyncThunk("auth/signUp", async (user: IUser) => {
+  try {
+    return await AuthService.signUp(user);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
-export const signIn = createAsyncThunk("auth/signIn", async () => {
-    return {
-        id: 3,
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        birthDate: ''
-      };
+export const loginIn = createAsyncThunk("auth/signIn", async (user: IUser) => {
+  try {
+    return await AuthService.loginIn(user);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 export const getUser = createAsyncThunk("auth/getUser", async () => {
-    return {
-        id: 3,
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        birthDate: ''
-      };
+  return {
+    id: 3,
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    birthDate: "",
+  };
 });
 
 export const userSlice = createSlice({
   name: "auth",
   initialState: initialStateUsers,
-  reducers: {},
+  reducers: {
+    removeUser: (state) => {
+      AuthService.logout();
+      state.user = undefined;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signUp.fulfilled, (state, action: PayloadAction<IUser>) => {
         state.user = action.payload;
       })
-      .addCase(signIn.fulfilled, (state, action: PayloadAction<IUser>) => {
+      .addCase(loginIn.fulfilled, (state, action: PayloadAction<IUser>) => {
         state.user = action.payload;
       })
       .addCase(getUser.pending, (state) => {
@@ -90,5 +81,7 @@ export const userSlice = createSlice({
       });
   },
 });
+
+export const { removeUser } = userSlice.actions;
 
 export default userSlice.reducer;

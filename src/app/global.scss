@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   padding: 0;
@@ -16,4 +15,8 @@ input {
 
 textarea:focus, input:focus{
   outline: none;
+}
+
+li {
+  list-style: none;
 }

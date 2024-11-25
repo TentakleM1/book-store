@@ -1,0 +1,15 @@
+@import "../../app/variables.module.scss";
+@import "../../app/mixin.module.scss";
+
+.footer_books {
+  color: $white-color;
+  background-color: $black-color;
+  font-size: $font-size-large;
+
+  .footer_books_info {
+    @include center;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
